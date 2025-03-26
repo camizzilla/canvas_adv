@@ -8,8 +8,30 @@ let lastTime = (new Date()).getTime(),
     currentTime = 0,
     delta = 0,
     fps = 1000;
+let background = '';
 
-let count = 0;
+/********************/
+/****FUNCTIONS******/
+/******************/
+
+async function loadImage(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = (err) => reject(err);
+      img.src = url;
+    });
+  }
+  
+async function drawBackground(){
+  const imageUrl = 'assets/images/kitchen-drawing.jpg';
+  background = await loadImage(imageUrl);
+}
+
+let init = () => {
+    drawBackground();
+    window.requestAnimationFrame(loop);
+}
 
 let loop = () => {
     window.requestAnimationFrame(loop);
@@ -19,16 +41,12 @@ let loop = () => {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
     
     /**  **/
-    
-    ctx.fillText( `Hello world  ${ count } `, WIDTH / 2, HEIGHT /2);
-    if ( count < 1000 ) count ++;
-    
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    ctx.drawImage( background, 0, 0, WIDTH, HEIGHT);
 
     lastTime = currentTime;
 }
 
-let init = () => {
-    window.requestAnimationFrame(loop);
-}
+
 
 init();
