@@ -10,9 +10,7 @@ let lastTime = (new Date()).getTime(),
     fps = 1000;
 let background = '';
 
-/********************/
-/****FUNCTIONS******/
-/******************/
+/****   FUNCTIONS  ******/
 
 async function loadImage(url) {
     return new Promise((resolve, reject) => {
@@ -47,6 +45,10 @@ let loop = () => {
     lastTime = currentTime;
 }
 
+/*******   EVENTS   ********/
+canvas.addEventListener('contextmenu', (event) => {
+  event.preventDefault()
+})
 
 
 init();

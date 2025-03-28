@@ -7,4 +7,5 @@ body {
 
 #canvas {
     border: 1px solid black;
+    cursor: url(/assets/images/cross-pointer.png) 17 17, move;
 }
